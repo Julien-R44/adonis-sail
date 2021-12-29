@@ -1,9 +1,9 @@
 {
   "extends": "./node_modules/@adonisjs/mrm-preset/_tsconfig",
   "compilerOptions": {
-    "types": [
-      "@types/node",
-      "@adonisjs/core"
-    ]
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "types": ["@adonisjs/core"]
   }
 }

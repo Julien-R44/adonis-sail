@@ -1,12 +1,27 @@
 {
+  "name": "adonis-sail",
+  "description": "⛵ Generate a ready-to-use docker environment for your Adonis application",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "build/adonis-typings",
+    "build/stubs",
+    "build/commands",
+    "build/providers",
+    "build/src",
+    "build/instructions.js",
+    "build/templates",
+    "build/instructions.md"
+  ],
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "lint": "eslint . --ext=.ts",
     "pretest": "npm run lint",
+    "copyfiles": "copyfiles \"stubs/**/*\" \"instructions.md\" build",
     "test": "node .bin/test.js",
-    "clean": "del build",
+    "clean": "del-cli build",
     "compile": "npm run lint && npm run clean && tsc",
-    "build": "npm run compile",
+    "build": "npm run compile && npm run copyfiles",
     "prepublishOnly": "npm run build",
     "format": "prettier --write ."
   },
@@ -15,6 +30,7 @@
     "@adonisjs/mrm-preset": "^5.0.2",
     "@adonisjs/require-ts": "^2.0.8",
     "@types/node": "^17.0.5",
+    "copyfiles": "^2.4.1",
     "del-cli": "^4.0.1",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
@@ -45,13 +61,6 @@
   "eslintIgnore": [
     "build"
   ],
-  "license": "UNLICENSED",
-  "main": "build/index.js",
-  "files": [
-    "build/src",
-    "build/index.d.ts",
-    "build/index.js"
-  ],
   "prettier": {
     "trailingComma": "es5",
     "semi": false,
@@ -61,5 +70,11 @@
     "bracketSpacing": true,
     "arrowParens": "always",
     "printWidth": 100
+  },
+  "adonisjs": {
+    "instructionsMd": "./build/instructions.md",
+    "commands": [
+      "@adonisjs/lucid/build/commands"
+    ]
   }
 }
