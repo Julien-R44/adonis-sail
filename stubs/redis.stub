@@ -1,0 +1,14 @@
+  redis:
+    image: redis:alpine
+    hostname: redis
+    container_name: redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      retries: 3
+      timeout: 5s
+    volumes:
+      - 'sailredis:/data'
+    networks:
+      - sail

@@ -1,0 +1,12 @@
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    hostname: redis-commander
+    container_name: redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "${REDIS_COMMANDER_PORT:-6379}:6379"
+    depends_on:
+      - redis
+    networks:
+      - sail
