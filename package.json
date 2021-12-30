@@ -20,7 +20,9 @@
     "compile": "npm run lint && npm run clean && tsc",
     "build": "npm run compile && npm run copyfiles",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "release": "np",
+    "version": "npm run build"
   },
   "devDependencies": {
     "@adonisjs/core": "^5.4.2",
@@ -35,6 +37,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "japa": "^4.0.0",
     "mrm": "^3.0.10",
+    "np": "^7.6.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   },
@@ -87,5 +90,9 @@
     "commands": [
       "adonis-sail/build/commands"
     ]
+  },
+  "np": {
+    "contents": ".",
+    "anyBranch": false
   }
 }
