@@ -4,12 +4,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "files": [
-    "build/adonis-typings",
     "build/stubs",
     "build/commands",
-    "build/providers",
-    "build/src",
-    "build/instructions.js",
     "build/templates",
     "build/instructions.md"
   ],
@@ -72,7 +68,6 @@
     "printWidth": 100
   },
   "adonisjs": {
-    "instructionsMd": "./build/instructions.md",
     "commands": [
       "adonis-sail/build/commands"
     ]
