@@ -1,5 +1,6 @@
   minio:
     image: 'minio/minio:latest'
+    container_name: 'minio'
     ports:
       - '${MINIO_PORT:-9000}:9000'
       - '${MINIO_CONSOLE_PORT:-8900}:8900'
