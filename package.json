@@ -3,6 +3,7 @@
   "description": "⛵ Generate a ready-to-use docker environment for your Adonis application",
   "version": "0.0.1",
   "license": "MIT",
+  "author": "Julien Ripouteau <julien@ripouteau.com>",
   "files": [
     "build/stubs",
     "build/commands",
@@ -37,6 +38,21 @@
     "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julien-R44/adonis-sail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Julien-R44/adonis-sail/issues"
+  },
+  "homepage": "https://github.com/Julien-R44/adonis-sail#readme",
+  "keywords": [
+    "adonisjs",
+    "adonis5",
+    "docker",
+    "adonis-sail",
+    "docker-compose"
+  ],
   "eslintConfig": {
     "extends": [
       "plugin:adonis/typescriptPackage",
