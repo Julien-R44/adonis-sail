@@ -74,7 +74,7 @@
   "adonisjs": {
     "instructionsMd": "./build/instructions.md",
     "commands": [
-      "@adonisjs/lucid/build/commands"
+      "adonis-sail/build/commands"
     ]
   }
 }
