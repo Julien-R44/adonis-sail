@@ -15,11 +15,6 @@ export const SERVICES: ServiceDefinition[] = [
     hasVolume: true,
   },
   {
-    key: 'redis-commander',
-    promptName: 'Redis Commander',
-    hasVolume: false,
-  },
-  {
     key: 'pgsql',
     promptName: 'PostgreSQL',
     envVarPrefix: 'PG',
@@ -36,5 +31,10 @@ export const SERVICES: ServiceDefinition[] = [
     type: 'database',
     hasVolume: true,
     connectionName: 'mysql',
+  },
+  {
+    key: 'minio',
+    promptName: 'MinIO',
+    hasVolume: true,
   },
 ]
