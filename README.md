@@ -22,6 +22,7 @@ node ace configure adonis-sail
 - MySQL
 - Redis
 - MinIO
+- MailHog
 
 ## Usage
 Make sure to install and configure `@adonisjs/redis` or `@adonisjs/lucid` if you want to use containers for your database or redis instance.
@@ -58,3 +59,33 @@ And add this to `config/drive.ts` :
 ...
 ```
 You can now use the `@adonisjs/drive-s3` package to store and fetch files like you would do normally on a real AWS bucket. You can also access MinIO dashboard at : http://localhost:8900/dashboard
+
+## Databases
+To connect to your application's databases from your local machine, you may use a graphical database management application such as [TablePlus](https://tableplus.com/). 
+By default, exposed ports are :
+- MySQL: 3306
+- PostgreSQL: 5432
+- Redis: 6379
+
+## MailHog
+MailHog intercepts emails sent by your application during local development and provides a convenient web interface so that you can preview your email messages in your browser.
+To use MailHog install [install the official Adonis Mailer package](https://docs.adonisjs.com/guides/mailer). Follow the installation instructions, and select SMTP when prompted.
+You have to set theses variables in your .env file : 
+```
+SMTP_HOST=localhost
+SMTP_PORT=1025
+SMTP_USERNAME=
+SMTP_PASSWORD=
+```
+In `config/mail.ts`, remove the `auth` part in the smtp configuration object. 
+```
+...
+  smtp: {
+    driver: 'smtp',
+    host: Env.get('SMTP_HOST'),
+    port: Env.get('SMTP_PORT'),
+  },
+...
+```
+
+You can now access the MailHog dashboard at http://localhost:8025/ to preview emails.
