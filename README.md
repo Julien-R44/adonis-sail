@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/GQLZIO7.png" width="250px" />  
   <br/>
   <h3>Adonis Sail</h3>
-  <p>⛵Generate a ready-to-use docker environment for your Adonis application</p>
+  <p>⛵Generate a ready-to-use local docker environment for your Adonis application</p>
   <a href="https://www.npmjs.com/package/adonis-sail">
     <img src="https://img.shields.io/npm/v/adonis-sail.svg?style=for-the-badge&logo=npm" />
   </a>
