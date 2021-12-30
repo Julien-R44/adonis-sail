@@ -25,12 +25,14 @@ node ace configure adonis-sail
 - MailHog
 
 ## Usage
-Make sure to install and configure `@adonisjs/redis` or `@adonisjs/lucid` if you want to use containers for your database or redis instance.
-Otherwise, you will have to manually add some values to your `.env` : `DB_CONNECTION` and the `*_HOST` variables of the different databases.
+Make sure to install and follow Adonis packages instructions before running Sail's commands.
+`@adonisjs/redis`, `@adonisjs/lucid`, `@adonisjs/drive-*`, `@adonisjs/mail`.
 
-Now you can set some variables in your environment file. In particular `*_USER`, `*_DATABASE`, `*_PASSWORD`. These variables will be used by the `docker-compose.yml` file. Look inside to see which ones are used.
+Now you can set your environment variables. Many of these will also be used in the generated docker-compose (look inside once created to know which ones). Especially the *_PORT or *_PASSWORD. 
 
-Once this is done you can run the command `node ace install:sail` and select the services you want. A `docker-compose.yml` file will be created at the root of your project, you now just have to launch it by doing `docker-compose up -d`.
+Once this is done you can run the command `node ace sail:install` and select the services you want. A `docker-compose.yml` file will be created at the root of your project, you now just have to launch it by doing `docker-compose up -d`.
+
+You can launch again the `node ace sail:install` command at any time to add new services.
 
 ## MinIO
 If you plan to use Amazon S3 to store files while running your application in its production environment, you may wish to install the MinIO service when installing Sail. MinIO provides an S3 compatible API that you may use to develop locally using Adonis's s3 storage driver without creating "test" storage buckets in your production S3 environment. If you choose to install MinIO while installing Sail, a MinIO configuration section will be added to your application's docker-compose.yml file.
@@ -89,3 +91,9 @@ In `config/mail.ts`, remove the `auth` part in the smtp configuration object.
 ```
 
 You can now access the MailHog dashboard at http://localhost:8025/ to preview emails.
+
+## Details
+Currently, the Adonis application is not dockerised. I rarely encountered problems on my applications depending on the version of Node.JS I use (it happens, but with a tool like `nvm` it's usually fixed pretty quickly). 
+And it's obviously easier to handle your Adonis application when it's running outside a docker container. That's why I decided not to dockerise the Adonis app.
+
+If you think it's really necessary to dockerise the Adonis application in local development, let me know and we'll see what we can do !
