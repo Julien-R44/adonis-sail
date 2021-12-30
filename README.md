@@ -44,4 +44,17 @@ S3_REGION=us-east-1
 S3_ENDPOINT=http://localhost:9000
 ```
 
-You can access MinIO dashboard at : http://localhost:8900/dashboard
+And add this to `config/drive.ts` : 
+```
+...
+  s3: {
+      forcePathStyle: true, // 👈 Don't forget this !
+      key: Env.get('S3_KEY'),
+      secret: Env.get('S3_SECRET'),
+      region: Env.get('S3_REGION'),
+      bucket: Env.get('S3_BUCKET'),
+      endpoint: Env.get('S3_ENDPOINT'),
+  }
+...
+```
+You can now use the `@adonisjs/drive-s3` package to store and fetch files like you would do normally on a real AWS bucket. You can also access MinIO dashboard at : http://localhost:8900/dashboard
