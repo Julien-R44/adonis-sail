@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from 'fs'
 import { ServiceDefinition, SERVICES } from './services'
 
 export default class InstallSail extends BaseCommand {
-  public static commandName = 'install:sail'
+  public static commandName = 'sail:install'
   public static description = 'Install Adonis Sail and generate Docker Compose file'
 
   public static settings = {
@@ -69,12 +69,12 @@ export default class InstallSail extends BaseCommand {
     services.forEach((service) => {
       if (service.type === 'database') {
         const host = `${service.envVarPrefix}_HOST`
-        env = env.replace(new RegExp(`(${host})=.*`), `$1=${service.host}`)
+        env = env.replace(new RegExp(`(${host})=.*`), `$1=localhost`)
       }
 
       if (service.key === 'redis') {
         const redisHost = `REDIS_HOST`
-        env = env.replace(new RegExp(`(${redisHost})=.*`), `$1=redis`)
+        env = env.replace(new RegExp(`(${redisHost})=.*`), `$1=localhost`)
       }
     })
 
