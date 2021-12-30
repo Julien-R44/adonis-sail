@@ -37,4 +37,9 @@ export const SERVICES: ServiceDefinition[] = [
     promptName: 'MinIO',
     hasVolume: true,
   },
+  {
+    key: 'mailhog',
+    promptName: 'MailHog',
+    hasVolume: false,
+  },
 ]

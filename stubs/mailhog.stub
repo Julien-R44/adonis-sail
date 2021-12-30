@@ -1,0 +1,8 @@
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    container_name: 'mailhog'
+    ports:
+      - '${MAILHOG_PORT:-1025}:1025'
+      - '${MAILHOG_DASHBOARD_PORT:-8025}:8025'
+    networks:
+      - sail
