@@ -37,7 +37,7 @@ export default class InstallSail extends BaseCommand {
    * Build docker-compose file by assembling selected services stubs
    */
   private buildDockerCompose(services: ServiceDefinition[]) {
-    const stubsDir = resolve('./node_modules/adonis-sail/stubs')
+    const stubsDir = resolve('./node_modules/adonis-sail/build/stubs')
 
     const stubs = services
       .map((service) => readFileSync(join(stubsDir, `${service.key}.stub`), 'utf8'))
