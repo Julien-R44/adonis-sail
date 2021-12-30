@@ -1,27 +1,7 @@
 import { BaseCommand } from '@adonisjs/core/build/standalone'
-import { join } from 'path'
+import { join, resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs'
-
-const SERVICES = {
-  'redis': {
-    hasVolume: true,
-  },
-  'redis-commander': {},
-  'pgsql': {
-    envVarPrefix: 'PG',
-    host: 'pgsql',
-    dbName: 'default',
-    type: 'database',
-    hasVolume: true,
-  },
-  'mysql': {
-    envVarPrefix: 'MYSQL',
-    host: 'mysql',
-    dbName: 'default',
-    type: 'database',
-    hasVolume: true,
-  },
-}
+import { ServiceDefinition, SERVICES } from './services'
 
 export default class InstallSail extends BaseCommand {
   public static commandName = 'install:sail'
@@ -38,18 +18,17 @@ export default class InstallSail extends BaseCommand {
   public async run() {
     const services = await this.prompt.multiple(
       'Select services you want to run along your Adonis Application',
-      [
-        { name: 'redis', message: 'Redis' },
-        { name: 'redis-commander', message: 'Redis-Commander' },
-        { name: 'pgsql', message: 'PostgreSQL' },
-        { name: 'mysql', message: 'MySQL' },
-      ]
+      Object.values(SERVICES).map((service) => service.promptName)
+    )
+
+    const selectedServicesDefinitions = services.map(
+      (service) => SERVICES.find((s) => s.promptName === service) as ServiceDefinition
     )
 
     this.logger.info('Generating docker-compose.yml file...')
 
-    this.buildDockerCompose(services)
-    this.replaceEnvVariables(services)
+    this.buildDockerCompose(selectedServicesDefinitions)
+    await this.replaceEnvVariables(selectedServicesDefinitions)
 
     this.logger.success('Docker-compose file generated successfully')
   }
@@ -57,16 +36,16 @@ export default class InstallSail extends BaseCommand {
   /**
    * Build docker-compose file by assembling selected services stubs
    */
-  private buildDockerCompose(services: string[]) {
-    const stubsDir = join(this.application.appRoot, '/providers/adonis-sail/stubs')
+  private buildDockerCompose(services: ServiceDefinition[]) {
+    const stubsDir = resolve('./node_modules/adonis-sail/stubs')
 
     const stubs = services
-      .map((service) => readFileSync(join(stubsDir, `${service}.stub`), 'utf8'))
+      .map((service) => readFileSync(join(stubsDir, `${service.key}.stub`), 'utf8'))
       .join('\n')
 
     let volumes = services
-      .filter((service) => SERVICES[service].hasVolume)
-      .map((service) => `  sail${service}:`)
+      .filter((service) => service.hasVolume)
+      .map((service) => `  sail${service.key}:`)
       .join('\n')
 
     if (volumes.length) {
@@ -83,30 +62,53 @@ export default class InstallSail extends BaseCommand {
   /**
    * Replace .env variables with selected services values
    */
-  private replaceEnvVariables(services: string[]) {
+  private async replaceEnvVariables(services: ServiceDefinition[]) {
     const envFilePath = join(this.application.appRoot, '.env')
     let env = readFileSync(envFilePath, 'utf8')
 
     services.forEach((service) => {
-      const serviceDef = SERVICES[service]
-
-      if (serviceDef.type === 'database') {
-        const host = `${serviceDef.envVarPrefix}_HOST`
-        env = env.replace(new RegExp(`(${host})=.*`), `$1=${serviceDef.host}`)
-
-        const password = `${serviceDef.envVarPrefix}_PASSWORD`
-        env = env.replace(new RegExp(`(${password})=.*`), `$1=password`)
-
-        const dbName = `${serviceDef.envVarPrefix}_DB_NAME`
-        env = env.replace(new RegExp(`(${dbName})=.*`), `$1=${serviceDef.dbName}`)
+      if (service.type === 'database') {
+        const host = `${service.envVarPrefix}_HOST`
+        env = env.replace(new RegExp(`(${host})=.*`), `$1=${service.host}`)
       }
 
-      if (service === 'redis') {
+      if (service.key === 'redis') {
         const redisHost = `REDIS_HOST`
         env = env.replace(new RegExp(`(${redisHost})=.*`), `$1=redis`)
       }
     })
 
+    const primaryDatabase = await this.selectPrimaryDatabase(services)
+    if (primaryDatabase) {
+      env = env.replace(new RegExp(`(DB_CONNECTION)=.*`), `$1=${primaryDatabase}`)
+    }
+
     writeFileSync(envFilePath, env)
+  }
+
+  /**
+   * Prompt user to select his primary database and assign it to DB_CONNECTION env var
+   */
+  private async selectPrimaryDatabase(services: ServiceDefinition[]): Promise<string | undefined> {
+    const databasesServices = services.filter((service) => service.type === 'database')
+
+    if (databasesServices.length === 0) {
+      return
+    }
+
+    const hasMultipleDatabases = databasesServices.length > 1
+
+    if (hasMultipleDatabases) {
+      let primaryDatabase = await this.prompt.choice(
+        'Select your primary database',
+        services
+          .filter((service) => service.type === 'database')
+          .map((service) => service.promptName)
+      )
+
+      return SERVICES.find((s) => s.promptName === primaryDatabase)?.connectionName
+    }
+
+    return databasesServices[0].connectionName
   }
 }
