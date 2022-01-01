@@ -25,7 +25,7 @@ node ace configure adonis-sail
 - MailHog
 
 ## Usage
-Make sure to install and follow Adonis packages instructions before running Sail's commands.
+Make sure to install needed Adonis Package, and follow instructions before running Sail's commands.
 `@adonisjs/redis`, `@adonisjs/lucid`, `@adonisjs/drive-*`, `@adonisjs/mail`.
 
 Now you can set your environment variables. Many of these will also be used in the generated docker-compose (look inside once created to know which ones). Especially the *_PORT or *_PASSWORD. 
