@@ -48,7 +48,7 @@ S3_ENDPOINT=http://localhost:9000
 ```
 
 And add this to `config/drive.ts` : 
-```
+```ts
 ...
   s3: {
       forcePathStyle: true, // 👈 Don't forget this !
@@ -80,7 +80,7 @@ SMTP_USERNAME=
 SMTP_PASSWORD=
 ```
 In `config/mail.ts`, remove the `auth` part in the smtp configuration object. 
-```
+```ts
 ...
   smtp: {
     driver: 'smtp',
@@ -101,11 +101,11 @@ ER_NOT_SUPPORTED_AUTH_MODE:
 ```
 
 You need to install mysql2 :
-```
+```bash
 npm install mysql2
 ```
 And now configure Adonis to use it, in config/database.ts :
-```
+```ts
 ...
 mysql: {
   client: 'mysql2' // 👈 Set this to 'mysql2'
