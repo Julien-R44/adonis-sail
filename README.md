@@ -92,6 +92,31 @@ In `config/mail.ts`, remove the `auth` part in the smtp configuration object.
 
 You can now access the MailHog dashboard at http://localhost:8025/ to preview emails.
 
+## Known issues
+### MySQL 8
+If you are using MySQL 8 (the default image), and you encounter the following error:
+```
+ER_NOT_SUPPORTED_AUTH_MODE: 
+  Client does not support authentication protocol requested by server; consider upgrading MySQL client 
+```
+
+You need to install mysql2 :
+```
+npm install mysql2
+```
+And now configure Adonis to use it, in config/database.ts :
+```
+...
+mysql: {
+  client: 'mysql2' // 👈 Set this to 'mysql2'
+  connection: {
+    user: Env.get('MYSQL_USER'),
+    password: Env.get('MYSQL_PASSWORD'),
+    database: Env.get('MYSQL_DB_NAME'),
+  },
+...
+```
+
 ## Details
 Currently, the Adonis application is not dockerised. I rarely encountered problems on my applications depending on the version of Node.JS I use (it happens, but with a tool like `nvm` it's usually fixed pretty quickly). 
 And it's obviously easier to handle your Adonis application when it's running outside a docker container. That's why I decided not to dockerise the Adonis app.
