@@ -1,14 +1,6 @@
-export interface ServiceDefinition {
-  key: string
-  promptName: string
-  hasVolume: boolean
-  envVarPrefix?: string
-  host?: string
-  type?: string
-  connectionName?: string
-}
+import { ServiceDefinition } from './Contracts'
 
-export const SERVICES: ServiceDefinition[] = [
+export const Services: ServiceDefinition[] = [
   {
     key: 'redis',
     promptName: 'Redis',

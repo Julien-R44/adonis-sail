@@ -1,7 +1,8 @@
 import { BaseCommand } from '@adonisjs/core/build/standalone'
 import { join, resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs'
-import { ServiceDefinition, SERVICES } from './services'
+import { Services } from '../src/services'
+import { ServiceDefinition } from '../src/Contracts'
 
 export default class InstallSail extends BaseCommand {
   public static commandName = 'sail:install'
@@ -18,11 +19,11 @@ export default class InstallSail extends BaseCommand {
   public async run() {
     const services = await this.prompt.multiple(
       'Select services you want to run along your Adonis Application',
-      Object.values(SERVICES).map((service) => service.promptName)
+      Object.values(Services).map((service) => service.promptName)
     )
 
     const selectedServicesDefinitions = services.map(
-      (service) => SERVICES.find((s) => s.promptName === service) as ServiceDefinition
+      (service) => Services.find((s) => s.promptName === service) as ServiceDefinition
     )
 
     this.logger.info('Generating docker-compose.yml file...')
@@ -106,7 +107,7 @@ export default class InstallSail extends BaseCommand {
           .map((service) => service.promptName)
       )
 
-      return SERVICES.find((s) => s.promptName === primaryDatabase)?.connectionName
+      return Services.find((s) => s.promptName === primaryDatabase)?.connectionName
     }
 
     return databasesServices[0].connectionName
