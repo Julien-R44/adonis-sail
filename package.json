@@ -8,7 +8,8 @@
     "build/stubs",
     "build/commands",
     "build/templates",
-    "build/instructions.md"
+    "build/instructions.md",
+    "build/src"
   ],
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
