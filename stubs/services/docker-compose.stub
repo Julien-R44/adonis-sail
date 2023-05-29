@@ -3,6 +3,7 @@ version: '3'
 
 services:
 {{services}}
+
 networks:
   sail:
     driver: bridge

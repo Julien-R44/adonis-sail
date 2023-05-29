@@ -1,4 +1,4 @@
-import { ServiceDefinition } from './Contracts'
+import { ServiceDefinition } from './types/index.js'
 
 export const Services: ServiceDefinition[] = [
   {
@@ -28,6 +28,11 @@ export const Services: ServiceDefinition[] = [
     key: 'minio',
     promptName: 'MinIO',
     hasVolume: true,
+  },
+  {
+    key: 'mailpit',
+    promptName: 'Mailpit',
+    hasVolume: false,
   },
   {
     key: 'mailhog',
