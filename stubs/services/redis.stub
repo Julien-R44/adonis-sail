@@ -1,7 +1,6 @@
   redis:
     image: redis:alpine
     hostname: redis
-    container_name: redis
     ports:
       - "${REDIS_PORT:-6379}:6379"
     healthcheck:
