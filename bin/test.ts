@@ -5,7 +5,7 @@ import { expectTypeOf } from '@japa/expect-type'
 import { runFailedTests } from '@japa/run-failed-tests'
 import { processCliArgs, configure, run } from '@japa/runner'
 import { pathToFileURL } from 'node:url'
-import { snapshot } from '@japa/expect-snapshot'
+import { snapshot } from '@japa/snapshot'
 import { getDirname } from '@poppinss/utils'
 import { join } from 'node:path'
 
