@@ -1,6 +1,7 @@
 import { test } from '@japa/runner'
 import InstallSail from '../commands/install_sail.js'
 import { createApp } from '../tests_helpers/index.js'
+import { Assert } from '@japa/assert'
 
 test.group('Install sail', () => {
   test('should throw if no .env file', async () => {
@@ -17,7 +18,7 @@ test.group('Install sail', () => {
     command.assertLogMatches(/No .env file found at the root of your application/)
   })
 
-  test('generate docker-compose.yml file', async ({ assert, fs, snapshot }) => {
+  test('generate docker-compose.yml file', async ({ assert, fs }) => {
     const app = await createApp()
     await fs.create('.env', 'PORT=3333')
 
@@ -34,6 +35,6 @@ test.group('Install sail', () => {
     command.assertSucceeded()
 
     await assert.fileExists('docker-compose.yml')
-    snapshot.expect(await fs.contents('docker-compose.yml')).toMatchSnapshot()
+    assert.snapshot(await fs.contents('docker-compose.yml')).match()
   })
 })
