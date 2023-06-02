@@ -4,7 +4,7 @@ import { Services } from '../src/services.js'
 import { AppFactory } from '@adonisjs/core/factories/app'
 
 test.group('Compose Generator', () => {
-  test('should generate docker-compose.yml file', async ({ snapshot }) => {
+  test('should generate docker-compose.yml file', async ({ assert }) => {
     const generator = new ComposeGenerator({} as any)
 
     const result = generator
@@ -14,13 +14,10 @@ test.group('Compose Generator', () => {
       ])
       .getGeneratedFile()
 
-    snapshot.expect(result).toMatchSnapshot()
+    assert.snapshot(result).match()
   })
 
-  test('should generate docker-compose.yml file with selected services', async ({
-    snapshot,
-    assert,
-  }) => {
+  test('should generate docker-compose.yml file with selected services', async ({ assert }) => {
     const generator = new ComposeGenerator({} as any)
 
     const result = generator
@@ -32,7 +29,7 @@ test.group('Compose Generator', () => {
       ])
       .getGeneratedFile()
 
-    snapshot.expect(result).toMatchSnapshot()
+    assert.snapshot(result).match()
 
     assert.include(result, 'minio:')
     assert.include(result, 'redis:')
@@ -40,7 +37,7 @@ test.group('Compose Generator', () => {
     assert.include(result, 'mysql:')
   })
 
-  test('should add volumes for services with volumes', async ({ snapshot, assert }) => {
+  test('should add volumes for services with volumes', async ({ assert }) => {
     const generator = new ComposeGenerator({} as any)
 
     const result = generator
@@ -50,18 +47,14 @@ test.group('Compose Generator', () => {
       ])
       .getGeneratedFile()
 
-    snapshot.expect(result).toMatchSnapshot()
+    assert.snapshot(result).match()
 
     assert.include(result, 'volumes:')
     assert.include(result, '  sailmysql:')
     assert.include(result, '  sailpgsql:')
   })
 
-  test('write should write the generated file to disk at app root', async ({
-    snapshot,
-    assert,
-    fs,
-  }) => {
+  test('write should write the generated file to disk at app root', async ({ assert, fs }) => {
     const application = new AppFactory().create(fs.baseUrl, () => {})
     const generator = new ComposeGenerator(application)
 
@@ -75,6 +68,6 @@ test.group('Compose Generator', () => {
     assert.fileExists('docker-compose.yml')
     const content = await fs.contents('docker-compose.yml')
 
-    snapshot.expect(content).toMatchSnapshot()
+    assert.snapshot(content).match()
   })
 })
