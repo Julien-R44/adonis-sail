@@ -1,7 +1,7 @@
 {
   "name": "adonis-sail",
   "description": "⛵ Generate a ready-to-use docker environment for your Adonis application",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "license": "MIT",
   "type": "module",
   "author": "Julien Ripouteau <julien@ripouteau.com>",
