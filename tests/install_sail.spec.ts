@@ -1,7 +1,6 @@
 import { test } from '@japa/runner'
 import InstallSail from '../commands/install_sail.js'
 import { createApp } from '../tests_helpers/index.js'
-import { Assert } from '@japa/assert'
 
 test.group('Install sail', () => {
   test('should throw if no .env file', async () => {
