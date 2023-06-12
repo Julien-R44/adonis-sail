@@ -27,6 +27,7 @@
     "build/commands/"
   ],
   "exports": {
+    ".": "./build/index.js",
     "./commands": "./build/commands/main.js",
     "./commands/*": "./build/commands/*.js"
   },
