@@ -13,8 +13,9 @@
 ## Installation
 
 ```
-npm i --save-dev adonis-sail
+pnpm i --save-dev adonis-sail
 node ace configure adonis-sail
+node ace sail:install
 ```
 
 ## Available services
@@ -91,6 +92,13 @@ In `config/mail.ts`, remove the `auth` part in the smtp configuration object.
 ```
 
 You can now access the MailHog dashboard at http://localhost:8025/ to preview emails.
+
+## Mailpit
+Mailpit is an alternative to MailHog. It's a service that allows you to preview emails sent by your application during local development.
+
+You can follow the same steps as for MailHog, and also access the Mailpit dashboard at http://localhost:8025/
+```
+
 
 ## Known issues
 ### MySQL 8
