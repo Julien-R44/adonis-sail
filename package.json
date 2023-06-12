@@ -12,6 +12,7 @@
     "factories",
     "services",
     "providers",
+    "commands",
     "build/stubs",
     "build/configure.js",
     "build/configure.d.ts",
@@ -22,7 +23,8 @@
     "build/src",
     "build/services",
     "build/providers",
-    "build/factories"
+    "build/factories",
+    "build/commands/"
   ],
   "exports": {
     "./commands": "./build/commands/main.js",
