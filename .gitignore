@@ -10,4 +10,3 @@ test/__app
 *.log
 build
 dist
-shrinkwrap.yaml
