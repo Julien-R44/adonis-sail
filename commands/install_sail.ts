@@ -1,9 +1,10 @@
-import { BaseCommand } from '@adonisjs/core/ace'
 import { existsSync } from 'node:fs'
-import { Services } from '../src/services.js'
-import { ServiceDefinition } from '../src/types/index.js'
-import { ComposeGenerator } from '../src/compose_generator.js'
+import { BaseCommand } from '@adonisjs/core/ace'
 import { readFile, writeFile } from 'node:fs/promises'
+
+import { Services } from '../src/services.js'
+import type { ServiceDefinition } from '../src/types/index.js'
+import { ComposeGenerator } from '../src/compose_generator.js'
 
 export default class InstallSail extends BaseCommand {
   static commandName = 'sail:install'
@@ -98,7 +99,7 @@ export default class InstallSail extends BaseCommand {
     const hasMultipleDatabases = databasesServices.length > 1
 
     if (hasMultipleDatabases) {
-      let primaryDatabase = await this.prompt.choice(
+      const primaryDatabase = await this.prompt.choice(
         'Select your primary database',
         services
           .filter((service) => service.type === 'database')

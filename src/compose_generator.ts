@@ -1,8 +1,9 @@
 import { join } from 'node:path'
+import type { Application } from '@adonisjs/core/app'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { ServiceDefinition } from './types/index.js'
-import { Application } from '@adonisjs/core/app'
+
 import { stubsRoot } from '../index.js'
+import type { ServiceDefinition } from './types/index.js'
 
 export class ComposeGenerator {
   #generatedFile: string | null = null

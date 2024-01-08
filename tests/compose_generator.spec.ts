@@ -1,7 +1,8 @@
 import { test } from '@japa/runner'
-import { ComposeGenerator } from '../src/compose_generator.js'
-import { Services } from '../src/services.js'
 import { AppFactory } from '@adonisjs/core/factories/app'
+
+import { Services } from '../src/services.js'
+import { ComposeGenerator } from '../src/compose_generator.js'
 
 test.group('Compose Generator', () => {
   test('should generate docker-compose.yml file', async ({ assert }) => {

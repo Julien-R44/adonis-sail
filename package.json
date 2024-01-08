@@ -1,30 +1,25 @@
 {
   "name": "adonis-sail",
-  "description": "⛵ Generate a ready-to-use docker environment for your Adonis application",
-  "version": "1.0.0-beta.2",
-  "license": "MIT",
   "type": "module",
+  "version": "1.0.0-beta.2",
+  "description": "⛵ Generate a ready-to-use docker environment for your Adonis application",
   "author": "Julien Ripouteau <julien@ripouteau.com>",
-  "files": [
-    "index.ts",
-    "configure.ts",
-    "src",
-    "factories",
-    "services",
-    "providers",
-    "commands",
-    "build/stubs",
-    "build/configure.js",
-    "build/configure.d.ts",
-    "build/configure.d.ts.map",
-    "build/index.js",
-    "build/index.d.ts",
-    "build/index.d.ts.map",
-    "build/src",
-    "build/services",
-    "build/providers",
-    "build/factories",
-    "build/commands/"
+  "license": "MIT",
+  "homepage": "https://github.com/Julien-R44/adonis-sail#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julien-R44/adonis-sail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Julien-R44/adonis-sail/issues"
+  },
+  "keywords": [
+    "adonisjs",
+    "adonis5",
+    "adonis6",
+    "docker",
+    "adonis-sail",
+    "docker-compose"
   ],
   "exports": {
     ".": "./build/index.js",
@@ -32,6 +27,27 @@
     "./commands/*": "./build/commands/*.js"
   },
   "main": "build/index.js",
+  "files": [
+    "build/commands/",
+    "build/configure.d.ts",
+    "build/configure.d.ts.map",
+    "build/configure.js",
+    "build/factories",
+    "build/index.d.ts",
+    "build/index.d.ts.map",
+    "build/index.js",
+    "build/providers",
+    "build/services",
+    "build/src",
+    "build/stubs",
+    "commands",
+    "configure.ts",
+    "factories",
+    "index.ts",
+    "providers",
+    "services",
+    "src"
+  ],
   "scripts": {
     "pretest": "pnpm lint",
     "test": "c8 pnpm quick:test",
@@ -46,6 +62,12 @@
     "format": "prettier --write .",
     "prepublishOnly": "pnpm build",
     "index:commands": "adonis-kit index build/commands"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^6.1.5-4"
+  },
+  "dependencies": {
+    "@poppinss/utils": "^6.5.0-2"
   },
   "devDependencies": {
     "@adonisjs/core": "^6.1.5-4",
@@ -68,28 +90,6 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
-  "peerDependencies": {
-    "@adonisjs/core": "^6.1.5-4"
-  },
-  "dependencies": {
-    "@poppinss/utils": "^6.5.0-2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Julien-R44/adonis-sail.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Julien-R44/adonis-sail/issues"
-  },
-  "homepage": "https://github.com/Julien-R44/adonis-sail#readme",
-  "keywords": [
-    "adonisjs",
-    "adonis5",
-    "adonis6",
-    "docker",
-    "adonis-sail",
-    "docker-compose"
-  ],
   "publishConfig": {
     "access": "public",
     "tag": "next"
