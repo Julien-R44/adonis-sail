@@ -41,8 +41,7 @@
     "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
     "build": "pnpm compile",
     "quick:test": "node --loader=ts-node/esm bin/test.ts",
-    "release": "bumpp --commit \"chore(release): %s\" --push --tag && pnpm publish",
-    "prepublishOnly": "pnpm build",
+    "release": "pnpm build && release-it",
     "index:commands": "adonis-kit index build/commands",
     "typecheck": "tsc --noEmit",
     "checks": "pnpm typecheck && pnpm lint"
@@ -67,12 +66,12 @@
     "@julr/tooling-configs": "^2.1.0",
     "@swc/core": "^1.3.102",
     "@types/node": "^20.10.7",
-    "bumpp": "^9.2.1",
     "c8": "^9.0.0",
     "copyfiles": "^2.4.1",
     "del-cli": "^5.1.0",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
+    "release-it": "^17.0.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
   },
@@ -90,5 +89,15 @@
       "tests_helpers/**"
     ]
   },
-  "prettier": "@julr/tooling-configs/prettier"
+  "prettier": "@julr/tooling-configs/prettier",
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "release ${version}"
+    },
+    "github": {
+      "release": true,
+      "web": true
+    }
+  }
 }
