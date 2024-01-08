@@ -1,13 +1,10 @@
 import { join } from 'node:path'
 import { assert } from '@japa/assert'
-import { pathToFileURL } from 'node:url'
 import { snapshot } from '@japa/snapshot'
 import { getDirname } from '@poppinss/utils'
 import { fileSystem } from '@japa/file-system'
 import { expectTypeOf } from '@japa/expect-type'
-import { specReporter } from '@japa/spec-reporter'
-import { runFailedTests } from '@japa/run-failed-tests'
-import { processCliArgs, configure, run } from '@japa/runner'
+import { processCLIArgs, configure, run } from '@japa/runner'
 
 /*
 |--------------------------------------------------------------------------
@@ -22,21 +19,17 @@ import { processCliArgs, configure, run } from '@japa/runner'
 |
 | Please consult japa.dev/runner-config for the config docs.
 */
+processCLIArgs(process.argv.slice(2))
 configure({
-  ...processCliArgs(process.argv.slice(2)),
-
   files: ['tests/**/*.spec.ts'],
   plugins: [
     assert(),
-    runFailedTests(),
     fileSystem({
       basePath: join(getDirname(import.meta.url), '..', 'tests', '__app'),
     }),
     expectTypeOf(),
     snapshot(),
   ],
-  reporters: [specReporter()],
-  importer: (filePath: string) => import(pathToFileURL(filePath).href),
 })
 
 /*
