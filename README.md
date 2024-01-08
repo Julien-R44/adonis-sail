@@ -31,12 +31,12 @@ Make sure to install needed Adonis Package, and follow instructions before runni
 
 Now you can set your environment variables. Many of these will also be used in the generated docker-compose (look inside once created to know which ones). Especially the *_PORT or *_PASSWORD. 
 
-Once this is done you can run the command `node ace sail:install` and select the services you want. A `docker-compose.yml` file will be created at the root of your project, you now just have to launch it by doing `docker-compose up -d`.
+Once this is done you can run the command `node ace sail:install` and select the services you want. A `compose.yml` file will be created at the root of your project, you now just have to launch it by doing `docker compose up -d`.
 
 You can launch again the `node ace sail:install` command at any time to add new services.
 
 ## MinIO
-If you plan to use Amazon S3 to store files while running your application in its production environment, you may wish to install the MinIO service when installing Sail. MinIO provides an S3 compatible API that you may use to develop locally using Adonis's s3 storage driver without creating "test" storage buckets in your production S3 environment. If you choose to install MinIO while installing Sail, a MinIO configuration section will be added to your application's docker-compose.yml file.
+If you plan to use Amazon S3 to store files while running your application in its production environment, you may wish to install the MinIO service when installing Sail. MinIO provides an S3 compatible API that you may use to develop locally using Adonis's s3 storage driver without creating "test" storage buckets in your production S3 environment. If you choose to install MinIO while installing Sail, a MinIO configuration section will be added to your application's compose.yml file.
 
 You will need to [install the official Adonis drive-s3](https://docs.adonisjs.com/guides/drive#s3-driver) package to use MinIO locally. So install the package by following the documentation correctly, then in your .env file, use these variables :
 

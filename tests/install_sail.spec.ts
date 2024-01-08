@@ -18,7 +18,7 @@ test.group('Install sail', () => {
     command.assertLogMatches(/No .env file found at the root of your application/)
   })
 
-  test('generate docker-compose.yml file', async ({ assert, fs }) => {
+  test('generate compose.yml file', async ({ assert, fs }) => {
     const app = await createApp()
     await fs.create('.env', 'PORT=3333')
 
@@ -34,7 +34,7 @@ test.group('Install sail', () => {
 
     command.assertSucceeded()
 
-    await assert.fileExists('docker-compose.yml')
-    assert.snapshot(await fs.contents('docker-compose.yml')).match()
+    await assert.fileExists('compose.yml')
+    assert.snapshot(await fs.contents('compose.yml')).match()
   })
 })
