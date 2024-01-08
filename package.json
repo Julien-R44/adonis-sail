@@ -28,38 +28,20 @@
   },
   "main": "build/index.js",
   "files": [
-    "build/commands/",
-    "build/configure.d.ts",
-    "build/configure.d.ts.map",
-    "build/configure.js",
-    "build/factories",
-    "build/index.d.ts",
-    "build/index.d.ts.map",
-    "build/index.js",
-    "build/providers",
-    "build/services",
-    "build/src",
-    "build/stubs",
-    "commands",
-    "configure.ts",
-    "factories",
-    "index.ts",
-    "providers",
-    "services",
-    "src"
+    "!build/bin",
+    "!build/tests",
+    "!build/tests_helpers",
+    "build"
   ],
   "scripts": {
-    "pretest": "pnpm lint",
     "test": "c8 pnpm quick:test",
     "lint": "eslint .",
     "clean": "del-cli build",
     "compile": "pnpm lint && pnpm clean && tsc && pnpm copy:templates && pnpm index:commands",
     "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
     "build": "pnpm compile",
-    "version": "pnpm build",
     "quick:test": "node --loader=ts-node/esm bin/test.ts",
     "release": "bumpp --commit \"chore(release): %s\" --push --tag && pnpm publish",
-    "format": "prettier --write .",
     "prepublishOnly": "pnpm build",
     "index:commands": "adonis-kit index build/commands",
     "typecheck": "tsc --noEmit",
@@ -96,7 +78,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "c8": {
     "reporter": [
