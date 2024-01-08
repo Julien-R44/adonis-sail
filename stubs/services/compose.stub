@@ -1,6 +1,4 @@
 # For more information: https://github.com/julien-r44/adonis-sail
-version: '3'
-
 services:
 {{services}}
 
