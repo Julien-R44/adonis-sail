@@ -5,7 +5,7 @@ import { Services } from '../src/services.js'
 import { ComposeGenerator } from '../src/compose_generator.js'
 
 test.group('Compose Generator', () => {
-  test('should generate docker-compose.yml file', async ({ assert }) => {
+  test('should generate compose.yml file', async ({ assert }) => {
     const generator = new ComposeGenerator({} as any)
 
     const result = generator
@@ -18,7 +18,7 @@ test.group('Compose Generator', () => {
     assert.snapshot(result).match()
   })
 
-  test('should generate docker-compose.yml file with selected services', async ({ assert }) => {
+  test('should generate compose.yml file with selected services', async ({ assert }) => {
     const generator = new ComposeGenerator({} as any)
 
     const result = generator
@@ -66,8 +66,8 @@ test.group('Compose Generator', () => {
       ])
       .write()
 
-    assert.fileExists('docker-compose.yml')
-    const content = await fs.contents('docker-compose.yml')
+    assert.fileExists('compose.yml')
+    const content = await fs.contents('compose.yml')
 
     assert.snapshot(content).match()
   })

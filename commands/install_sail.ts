@@ -8,7 +8,7 @@ import { ComposeGenerator } from '../src/compose_generator.js'
 
 export default class InstallSail extends BaseCommand {
   static commandName = 'sail:install'
-  static description = 'Install Adonis Sail and generate docker-compose file'
+  static description = 'Install Adonis Sail and generate docker compose file'
 
   static settings = {
     loadApp: false,
@@ -128,7 +128,7 @@ export default class InstallSail extends BaseCommand {
       (service) => Services.find((s) => s.promptName === service) as ServiceDefinition,
     )
 
-    this.logger.info('Generating docker-compose.yml file...')
+    this.logger.info('Generating compose.yml file...')
 
     /**
      * Generate docker-compose.yml file and replace/add .env variables
@@ -136,6 +136,6 @@ export default class InstallSail extends BaseCommand {
     new ComposeGenerator(this.app).generate(selectedServicesDefinitions).write()
     await this.#replaceEnvVariables(selectedServicesDefinitions)
 
-    this.logger.success('Docker-compose file generated successfully')
+    this.logger.success('Docker compose file generated successfully')
   }
 }

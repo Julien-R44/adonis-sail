@@ -1,4 +1,4 @@
-exports[`Compose Generator > should generate docker-compose.yml file`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Compose Generator > should generate compose.yml file`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:
@@ -50,7 +50,7 @@ volumes:
   sailpgsql:
 "`
 
-exports[`Compose Generator > should generate docker-compose.yml file with selected services`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Compose Generator > should generate compose.yml file with selected services`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:
@@ -240,7 +240,7 @@ volumes:
   sailpgsql:
 "`
 
-exports[`Compose Generator > should generate docker-compose.yml file 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Compose Generator > should generate compose.yml file 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:
@@ -292,7 +292,7 @@ volumes:
   sailpgsql:
 "`
 
-exports[`Compose Generator > should generate docker-compose.yml file with selected services 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Compose Generator > should generate compose.yml file with selected services 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:

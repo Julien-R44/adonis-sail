@@ -1,4 +1,4 @@
-exports[`Install sail > generate docker-compose.yml file`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Install sail > generate compose.yml file`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:
@@ -44,7 +44,7 @@ volumes:
   sailpgsql:
 "`
 
-exports[`Install sail > generate docker-compose.yml file 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
+exports[`Install sail > generate compose.yml file 1`] = `"# For more information: https://github.com/julien-r44/adonis-sail
 version: '3'
 
 services:

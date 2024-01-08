@@ -11,7 +11,7 @@ export class ComposeGenerator {
   constructor(public app: Application<any>) {}
 
   /**
-   * Generate docker-compose.yml file and store it in memory
+   * Generate compose.yml file and store it in memory
    */
   generate(services: ServiceDefinition[]) {
     const stubs = services
@@ -27,7 +27,7 @@ export class ComposeGenerator {
       volumes = `volumes:\n${volumes}`
     }
 
-    let finalFile = readFileSync(join(stubsRoot, 'services', 'docker-compose.stub'), 'utf8')
+    let finalFile = readFileSync(join(stubsRoot, 'services', 'compose.stub'), 'utf8')
     finalFile = finalFile.replace('{{services}}', stubs)
     finalFile = finalFile.replace('{{volumes}}', volumes)
 
@@ -55,6 +55,6 @@ export class ComposeGenerator {
       mkdirSync(this.app.appRoot, { recursive: true })
     }
 
-    writeFileSync(new URL('docker-compose.yml', this.app.appRoot), this.#generatedFile)
+    writeFileSync(new URL('compose.yml', this.app.appRoot), this.#generatedFile)
   }
 }
