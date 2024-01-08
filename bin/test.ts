@@ -1,13 +1,13 @@
+import { join } from 'node:path'
 import { assert } from '@japa/assert'
-import { specReporter } from '@japa/spec-reporter'
-import { fileSystem } from '@japa/file-system'
-import { expectTypeOf } from '@japa/expect-type'
-import { runFailedTests } from '@japa/run-failed-tests'
-import { processCliArgs, configure, run } from '@japa/runner'
 import { pathToFileURL } from 'node:url'
 import { snapshot } from '@japa/snapshot'
 import { getDirname } from '@poppinss/utils'
-import { join } from 'node:path'
+import { fileSystem } from '@japa/file-system'
+import { expectTypeOf } from '@japa/expect-type'
+import { specReporter } from '@japa/spec-reporter'
+import { runFailedTests } from '@japa/run-failed-tests'
+import { processCliArgs, configure, run } from '@japa/runner'
 
 /*
 |--------------------------------------------------------------------------
@@ -24,20 +24,19 @@ import { join } from 'node:path'
 */
 configure({
   ...processCliArgs(process.argv.slice(2)),
-  ...{
-    files: ['tests/**/*.spec.ts'],
-    plugins: [
-      assert(),
-      runFailedTests(),
-      fileSystem({
-        basePath: join(getDirname(import.meta.url), '..', 'tests', '__app'),
-      }),
-      expectTypeOf(),
-      snapshot(),
-    ],
-    reporters: [specReporter()],
-    importer: (filePath: string) => import(pathToFileURL(filePath).href),
-  },
+
+  files: ['tests/**/*.spec.ts'],
+  plugins: [
+    assert(),
+    runFailedTests(),
+    fileSystem({
+      basePath: join(getDirname(import.meta.url), '..', 'tests', '__app'),
+    }),
+    expectTypeOf(),
+    snapshot(),
+  ],
+  reporters: [specReporter()],
+  importer: (filePath: string) => import(pathToFileURL(filePath).href),
 })
 
 /*

@@ -1,4 +1,5 @@
 import { test } from '@japa/runner'
+
 import InstallSail from '../commands/install_sail.js'
 import { createApp } from '../tests_helpers/index.js'
 
