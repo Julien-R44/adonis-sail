@@ -97,8 +97,6 @@ You can now access the MailHog dashboard at http://localhost:8025/ to preview em
 Mailpit is an alternative to MailHog. It's a service that allows you to preview emails sent by your application during local development.
 
 You can follow the same steps as for MailHog, and also access the Mailpit dashboard at http://localhost:8025/
-```
-
 
 ## Known issues
 ### MySQL 8
@@ -128,5 +126,3 @@ mysql: {
 ## Details
 Currently, the Adonis application is not dockerised. I rarely encountered problems on my applications depending on the version of Node.JS I use (it happens, but with a tool like `nvm` it's usually fixed pretty quickly). 
 And it's obviously easier to handle your Adonis application when it's running outside a docker container. That's why I decided not to dockerise the Adonis app.
-
-If you think it's really necessary to dockerise the Adonis application in local development, let me know and we'll see what we can do !
