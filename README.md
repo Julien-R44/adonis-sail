@@ -12,6 +12,9 @@
 
 ## Installation
 
+> [!NOTE]  
+> Looking for version for AdonisJS 5 ? Make sure to install `adonis-sail@0.0.7`
+
 ```
 pnpm i --save-dev adonis-sail
 node ace configure adonis-sail
